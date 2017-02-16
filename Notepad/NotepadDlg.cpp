@@ -85,3 +85,19 @@ HCURSOR CNotepadDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CNotepadDlg::OnOK()
+{
+	// TODO:  在此添加专用代码和/或调用基类
+
+	//CDialogEx::OnOK();
+}
+
+
+void CNotepadDlg::OnCancel()
+{
+	// TODO:  在此添加专用代码和/或调用基类
+
+	//CDialogEx::OnCancel();
+}
