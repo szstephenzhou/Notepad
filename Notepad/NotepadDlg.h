@@ -30,4 +30,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	virtual void OnOK();
 	virtual void OnCancel();
+public:
+	afx_msg void OnAppExit();
+	afx_msg void OnDropFiles(HDROP hDropInfo);
 };

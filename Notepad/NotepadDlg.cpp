@@ -30,6 +30,8 @@ void CNotepadDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CNotepadDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_COMMAND(ID_APP_EXIT, &CNotepadDlg::OnAppExit)
+	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
 
@@ -100,4 +102,37 @@ void CNotepadDlg::OnCancel()
 	// TODO:  在此添加专用代码和/或调用基类
 
 	//CDialogEx::OnCancel();
+}
+
+
+void CNotepadDlg::OnAppExit()
+{
+	EndDialog(IDCANCEL);
+}
+
+
+void CNotepadDlg::OnDropFiles(HDROP hDropInfo)//拖拽消息
+{
+	// TODO:  在此添加消息处理程序代码和/或调用默认值
+
+	TCHAR sFile[256];
+	int DropCount = DragQueryFile(hDropInfo, -1, NULL, 0);
+
+	//int i = 0;
+	//while (i<DropCount)
+	//{
+	//	DragQueryFile(hDropInfo, i, sFile, _countof(sFile));
+	//	++i;
+
+	//}
+
+	DragQueryFile(hDropInfo, 0, sFile, _countof(sFile));
+
+	CFile file;
+	if (!file.Open(sFile,CFile::modeRead))
+	{
+		AfxMessageBox(_T("打开失败"));
+	}
+
+	CDialogEx::OnDropFiles(hDropInfo);
 }
